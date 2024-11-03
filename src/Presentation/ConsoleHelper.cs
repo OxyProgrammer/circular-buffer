@@ -1,8 +1,4 @@
-﻿using CircularBufferDemo.Data;
-using CircularBufferDemo.Models;
-using System.Diagnostics;
-
-namespace CircularBufferDemo.Presentation
+﻿namespace CircularBufferDemo.Presentation
 {
     internal static class ConsoleHelper
     {

@@ -1,11 +1,8 @@
-﻿
-
-using CircularBufferDemo;
+﻿using CircularBufferDemo;
 using CircularBufferDemo.Data;
 using CircularBufferDemo.Models;
 using CircularBufferDemo.Presentation;
 using CircularBufferDemo.Tests;
-using System.Diagnostics.Metrics;
 
 /**
   _____   _                   _            ____        __  __         

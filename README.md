@@ -71,6 +71,11 @@ dotnet run
 
 You will see market data being processed in real-time, demonstrating how a circular buffer handles high throughput efficiently. 📈💡
 
+## Article
+
+A [🔗 Hashnode Article](https://oxyprogrammer.com/circular-buffers-the-smart-solution-for-managing-data-streams) to set your idea about the repo and whats happeing in it.
+
+
 ## Features
 
 - ⚡ High-speed data processing using circular buffers.
