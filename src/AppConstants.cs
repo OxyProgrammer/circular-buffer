@@ -8,6 +8,9 @@
 
         internal const ConsoleColor MarketDataTicketColor = ConsoleColor.Red;
 
+        public const ConsoleColor Regular = ConsoleColor.White;
+
+        //Reduce this if your pc can't handle.
         internal const long TestSampleSize = 1000000;
     }
 }

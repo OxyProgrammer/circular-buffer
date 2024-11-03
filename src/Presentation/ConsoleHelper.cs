@@ -1,12 +1,12 @@
 ﻿using CircularBufferDemo.Data;
 using CircularBufferDemo.Models;
-using System.Reflection.Emit;
+using System.Diagnostics;
 
 namespace CircularBufferDemo.Presentation
 {
     internal static class ConsoleHelper
     {
-        internal static void ShowLogoAndHeaderText()
+        internal static void ShowLogoAndIntroText()
         {
             Console.ForegroundColor = AppConstants.LogoColor;
 
@@ -59,62 +59,6 @@ namespace CircularBufferDemo.Presentation
             Console.WriteLine(horizontalBorder);
 
             Console.ResetColor();
-        }
-
-        internal static void ShowMarketDataTicking()
-        {
-            var provider = new MarketDataProvider();
-
-            //The depth is taken 1 to facilitate logging in console.
-            //However, the buffer will work just fine for any depth.
-            int depth = 1;
-
-            var marketData = new SymbolMarketData(depth)
-            {
-                Symbol = "IBM.N"
-            };
-
-            int counter = 0;
-
-            PrintPriceLevelsHeader();
-            Console.ForegroundColor = AppConstants.MarketDataTicketColor;
-            var subscription = provider.GetPriceLevels().Subscribe(
-                priceLevelDto =>
-                {
-                    if (counter < depth)
-                    {
-                        marketData.BidLevels.Add(new PriceLevel
-                        {
-                            Price = priceLevelDto.Price,
-                            Size = priceLevelDto.Size,
-                            NumberOfOrders = priceLevelDto.NumberOfOrders
-                        });
-                    }
-                    else
-                    {
-                        var item = marketData.BidLevels[counter % depth];
-                        item.Price = marketData.BidLevels[counter % depth].Price;
-                        item.Size = marketData.BidLevels[counter % depth].Size;
-                        item.NumberOfOrders = marketData.BidLevels[counter % depth].NumberOfOrders;
-                    }
-                    counter++;
-                    (_, var top) = Console.GetCursorPosition();
-                    Console.SetCursorPosition(0, top);
-                    Console.Write($"${priceLevelDto.Price:F2}\t{priceLevelDto.Size}\t{priceLevelDto.NumberOfOrders}\t");
-                },
-            ex => Console.WriteLine($"Error: {ex.Message}"),
-            () => Console.WriteLine("Completed")
-            );
-
-            Console.ReadLine();
-            subscription.Dispose();
-        }
-
-        private static void PrintPriceLevelsHeader()
-        {
-            Console.WriteLine("Price\tSize\tOrders");
-            Console.WriteLine("------------------------------------------");
-            Console.WriteLine();
         }
     }
 }
